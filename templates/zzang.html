@@ -1,0 +1,93 @@
+<html>
+  <head>
+    <title>Item Details</title>
+    <script src="static/js/jquery-3.6.1.js"></script>
+    <script type="text/javascript">
+    var img2D =[
+    	[1,1,2,2],
+    	[3,3,4,4],
+    	[5,5,6,6],
+    	[7,7,8,8]
+    ];
+    
+    var cvr2D = [
+    		[0,0,0,0],
+        	[0,0,0,0],
+        	[0,0,0,0],
+        	[0,0,0,0]	
+    ]
+ 	
+   function shuffle(){
+	   for(var k = 0 ; k<200;k++){
+		   var rnd1 = Math.floor(Math.random() * 4);
+		   var rnd2 = Math.floor(Math.random() * 4);
+					var a = img2D[0][0];
+					var b = img2D[rnd1][rnd2];
+					img2D[0][0] = b;
+					img2D[rnd1][rnd2] = a;	
+		}
+	   console.log(img2D);
+   }
+    
+    function render(){
+    	
+    		for(var i=0; i<4;i++){
+    			for(var j=0;j<4;j++){
+    				if(cvr2D[i][j] == 1){
+    				$("img").eq(i*4+j).attr("src", "static/img/"+img2D[i][j]+".png");
+    				}else{
+    					$("img").eq(i*4+j).attr("src", "static/img/0.png");
+    				}
+    			}
+    	}
+    }
+    
+    function imgclick(event){
+    	var index1 = $(event.target).parent().parent().index();
+    	var index2 = $(event.target).parent().index();
+    	$(event.target).attr("src", "static/img/"+img2D[index1][index2]+".png");
+    	
+    }
+    
+  	function imgcheck(){
+  		
+  	}
+  	
+    $(document).ready(function(){
+		   $("img").bind("click", function(event) {
+	           imgclick(event);
+	        });
+	});
+    
+    </script>
+  </head>
+  <body onload="shuffle()">
+   <table>
+   	<tr>
+   		<td><img src="static/img/0.png"></td>
+   		<td><img src="static/img/0.png"></td>
+   		<td><img src="static/img/0.png"></td>
+   		<td><img src="static/img/0.png"></td>
+   	</tr>
+   	<tr>
+   		<td><img src="static/img/0.png"></td>
+   		<td><img src="static/img/0.png"></td>
+   		<td><img src="static/img/0.png"></td>
+   		<td><img src="static/img/0.png"></td>
+   	</tr>
+   	<tr>
+   		<td><img src="static/img/0.png"></td>
+   		<td><img src="static/img/0.png"></td>
+   		<td><img src="static/img/0.png"></td>
+   		<td><img src="static/img/0.png"></td>
+   	</tr>
+   	<tr>
+   		<td><img src="static/img/0.png"></td>
+   		<td><img src="static/img/0.png"></td>
+   		<td><img src="static/img/0.png"></td>
+   		<td><img src="static/img/0.png"></td>
+   	</tr>
+   </table>
+   <a href="javascript:render()">render</a>
+  </body>
+</html>
